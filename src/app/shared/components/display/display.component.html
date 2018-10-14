@@ -1,3 +1,11 @@
-<p *myNgIf="show">
-  display works!
-</p>
+<!-- <p *myNgIf="show; let test = value">
+  tyest {{test}}
+</p> -->
+
+<div *ngIf="demo$ | async as demo">
+  {{demo | json}}
+</div>
+
+<div *appRequestLoader="demo$">
+
+</div>

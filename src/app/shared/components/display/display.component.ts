@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TestService } from 'src/app/services/test.service';
+import { Observable } from 'rxjs';
+import { Demo } from 'src/app/models/demo.model';
 
 @Component({
   selector: 'app-display',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisplayComponent implements OnInit {
   show = true
-  constructor() { }
+  demo$: Observable<Demo>;
+  constructor(
+    private testService: TestService
+  ) { }
 
   ngOnInit() {
+    this.demo$ = this.testService.getData(); 
   }
 
 }

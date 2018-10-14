@@ -4,9 +4,11 @@ import { Directive, ViewContainerRef, TemplateRef, Input } from '@angular/core';
   selector: '[myNgIf]'
 })
 export class MyNgIfDirective {
+  private loading: boolean = false;
+   
   @Input() set myNgIf(condition: boolean) {
     if (condition) {
-      this.viewContainer.createEmbeddedView(this.templateRef);
+      this.viewContainer.createEmbeddedView(this.templateRef, {value: 'woot'});
     } else {
       this.viewContainer.clear();
     }
