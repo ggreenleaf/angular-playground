@@ -19,4 +19,7 @@ export class DisplayComponent implements OnInit {
     this.demo$ = this.testService.getData(); 
   }
 
+  load() {
+    this.demo$ = this.testService.getData();
+  }
 }

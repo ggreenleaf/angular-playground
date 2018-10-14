@@ -2,6 +2,8 @@ import { Directive, TemplateRef, ViewContainerRef, Input, ComponentFactoryResolv
 import { Observable } from 'rxjs';
 import { ComponentFactory } from '@angular/core/src/render3';
 import { LoadingComponent } from '../components/loading/loading.component';
+import { ErrorComponent } from '../components/error/error.component';
+import { createError } from '@angular/core/src/render3/instructions';
 
 
 @Directive({
@@ -11,9 +13,14 @@ export class RequestLoaderDirective {
 
   @Input() set appRequestLoader(request: Observable<any>) {
     this.createLoadingComponent();
-    request.subscribe(res => {
+    request.subscribe(
+      res => {
       this.viewContainerRef.clear();
       this.viewContainerRef.createEmbeddedView(this.templateRef, { value: res })
+    },
+    error => {
+      console.log("in error handler");
+      this.createErrorComponent(error);
     });
   }
   
@@ -29,6 +36,15 @@ export class RequestLoaderDirective {
     this.viewContainerRef.clear();
     const factory = this.componentFactoryResolver.resolveComponentFactory(LoadingComponent);
     this.viewContainerRef.createComponent(factory);
+  }
+
+  // we would type this to an error object we expect from our server
+  // but for the sample i just use string
+  private createErrorComponent(error: string) {
+    this.viewContainerRef.clear();
+    const factory = this.componentFactoryResolver.resolveComponentFactory(ErrorComponent);
+    const errorComponent = this.viewContainerRef.createComponent(factory);
+    errorComponent.instance.errorMessage = error;
   }
 
 }

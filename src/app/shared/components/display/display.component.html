@@ -2,10 +2,7 @@
   tyest {{test}}
 </p> -->
 
-<div *ngIf="demo$ | async as demo">
-  {{demo | json}}
+<div *appRequestLoader="demo$; let res = value">
+  {{res |  json}}
 </div>
-
-<div *appRequestLoader="demo$">
-
-</div>
+<button (click)="load()">Refresh</button>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Demo } from '../models/demo.model';
 import { Observable, Subject, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { delay, catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +11,17 @@ export class TestService {
   constructor() { }
 
   getData(): Observable<Demo> {
-    return of(this.getDemoData())
+    const demoData = this.getDemoData();
+
+    return of(demoData)
       .pipe(
-        delay(4000)
+        delay(2000),
+        map(d => {
+          if (d.number > 5) {
+            throw new Error("number in demo to big");
+          }
+          return d;
+        })
       );
   }
 
