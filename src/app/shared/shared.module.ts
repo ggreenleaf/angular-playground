@@ -6,6 +6,7 @@ import { RequestLoaderDirective } from './directives/request-loader.directive';
 import { LoadingComponent } from './components/loading/loading.component';
 import { ErrorComponent } from './components/error/error.component';
 import { DemoDisplayComponent } from './components/demo-display/demo-display.component';
+import { AlwaysErrorDisplayComponent } from './components/always-error-display/always-error-display.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { DemoDisplayComponent } from './components/demo-display/demo-display.com
     RequestLoaderDirective,
     LoadingComponent,
     ErrorComponent,
-    DemoDisplayComponent
+    DemoDisplayComponent,
+    AlwaysErrorDisplayComponent
   ],
   entryComponents: [
     LoadingComponent,

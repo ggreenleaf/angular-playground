@@ -20,7 +20,7 @@ export class RequestLoaderDirective {
     },
     error => {
       console.log("in error handler");
-      this.createErrorComponent(error);
+      this.createErrorComponent(error); 
     });
   }
   
