@@ -16,7 +16,7 @@ export class RequestLoaderDirective {
     request.subscribe(
       res => {
       this.viewContainerRef.clear();
-      this.viewContainerRef.createEmbeddedView(this.templateRef, { value: res })
+      this.viewContainerRef.createEmbeddedView(this.templateRef, { appRequestLoader: res })
     },
     error => {
       console.log("in error handler");

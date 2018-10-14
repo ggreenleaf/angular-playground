@@ -2,7 +2,7 @@
   tyest {{test}}
 </p> -->
 
-<div *appRequestLoader="demo$; let res = value">
-  <app-demo-display [demo]="res"></app-demo-display>
+<div *appRequestLoader="demo$ as demo">
+  <app-demo-display [demo]="demo"></app-demo-display>
 </div>
 <button (click)="load()">Refresh</button>
