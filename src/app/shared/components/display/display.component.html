@@ -3,6 +3,6 @@
 </p> -->
 
 <div *appRequestLoader="demo$; let res = value">
-  {{res |  json}}
+  <app-demo-display [demo]="res"></app-demo-display>
 </div>
 <button (click)="load()">Refresh</button>

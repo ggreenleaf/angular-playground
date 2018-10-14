@@ -5,6 +5,7 @@ import { MyNgIfDirective } from './directives/my-ng-if.directive';
 import { RequestLoaderDirective } from './directives/request-loader.directive';
 import { LoadingComponent } from './components/loading/loading.component';
 import { ErrorComponent } from './components/error/error.component';
+import { DemoDisplayComponent } from './components/demo-display/demo-display.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { ErrorComponent } from './components/error/error.component';
     MyNgIfDirective,
     RequestLoaderDirective,
     LoadingComponent,
-    ErrorComponent
+    ErrorComponent,
+    DemoDisplayComponent
   ],
   entryComponents: [
     LoadingComponent,
