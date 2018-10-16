@@ -7,13 +7,17 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { ErrorComponent } from './components/error/error.component';
 import { DemoDisplayComponent } from './components/demo-display/demo-display.component';
 import { AlwaysErrorDisplayComponent } from './components/always-error-display/always-error-display.component';
+import { LocalGridTestComponent } from './components/local-grid-test/local-grid-test.component';
+import { GridModule } from '../grid/grid.module';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    GridModule
   ],
   exports: [
-    DisplayComponent
+    DisplayComponent,
+    LocalGridTestComponent
   ],
   declarations: [
     DisplayComponent,
@@ -22,7 +26,8 @@ import { AlwaysErrorDisplayComponent } from './components/always-error-display/a
     LoadingComponent,
     ErrorComponent,
     DemoDisplayComponent,
-    AlwaysErrorDisplayComponent
+    AlwaysErrorDisplayComponent,
+    LocalGridTestComponent
   ],
   entryComponents: [
     LoadingComponent,

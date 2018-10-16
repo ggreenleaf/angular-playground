@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { MyNgIfDirective } from './shared/directives/my-ng-if.directive';
 import { SharedModule } from './shared/shared.module';
 import { RequestLoaderDirective } from './shared/directives/request-loader.directive';
+import { GridModule } from './grid/grid.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,7 @@ import { RequestLoaderDirective } from './shared/directives/request-loader.direc
   ],
   imports: [
     BrowserModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,35 @@
+<div>
+  <dx-data-grid
+    [dataSource]="data"
+    [allowColumnReordering]="true"
+    [allowColumnResizing]="true"
+    [columnAutoWidth]="true"
+    [hoverStateEnabled]="true"
+    [loadPanel]="{enabled: false}">
+
+      <dxo-scrolling mode="virtual"></dxo-scrolling>
+      <dxo-selection mode="single" showCheckBoxesMode="none"></dxo-selection>
+      <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+      <dxo-state-storing [enabled]="true" type="localStorage"  storageKey="storage"></dxo-state-storing>
+      
+      <dxi-column 
+        *ngFor="let column of gridConfig.columns"
+        [dataField]="column.propertyName"
+        [caption]="column.caption"
+        [dataType]="column.dxDataType"
+        [visible]="column.showWhenDefault"></dxi-column>
+
+      <dxi-column
+        *ngIf="gridConfig.rowActions.length > 0"
+        [cellTemplate]="actionButtonTemplate"
+        [width]="40"
+      ></dxi-column>
+      <div *dxTemplate="let button of 'actionButtonTemplate'" class="align-right">
+        <!-- <dx-menu
+          [dataSource]="girdConfig.row">
+
+        </dx-menu> -->
+        hello
+      </div>      
+
+</dx-data-grid>
