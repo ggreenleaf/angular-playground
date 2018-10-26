@@ -1,8 +1,12 @@
-<div *appRequestLoader="demo$ as demo">
-  <app-demo-display [demo]="demo"></app-demo-display>
-  <app-always-error-display [demo]="demo"></app-always-error-display>
+<div *ngIf="showContent">
+  <div *appRequestLoader="demo$ as demo">
+    <!-- <app-demo-display [demo]="demo"></app-demo-display>
+    <app-always-error-display [demo]="demo"></app-always-error-display> -->
+    {{demo | json}}
+  </div>
 </div>
-<button (click)="load()">Refresh</button>
+
+<button (click)="showContent = !showContent">Show</button>
 
 <!--  Have this here to test teh differences of the type returned in the ngIf vs what I have
 both appRequestLoader and ngIf have demo as any type so it passes down no matter what since its a runtime thing

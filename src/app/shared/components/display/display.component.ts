@@ -9,17 +9,17 @@ import { Demo } from 'src/app/models/demo.model';
   styleUrls: ['./display.component.css']
 })
 export class DisplayComponent implements OnInit {
-  show = true
-  demo$: Observable<Demo>;
+  showContent = true;
+  demo$: Observable<Demo[]>;
   constructor(
     private testService: TestService
   ) { }
 
   ngOnInit() {
-    this.demo$ = this.testService.getData(); 
+    this.demo$ = this.testService.getDemoOverTime();
   }
 
-  load() {
-    this.demo$ = this.testService.getData();
-  }
+  // load() {
+  //   this.demo$ = this.testService.getData();
+  // }
 }

@@ -1,5 +1,5 @@
-import { Directive, TemplateRef, ViewContainerRef, Input, ComponentFactoryResolver } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Directive, TemplateRef, ViewContainerRef, Input, ComponentFactoryResolver, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { ComponentFactory } from '@angular/core/src/render3';
 import { LoadingComponent } from '../components/loading/loading.component';
 import { ErrorComponent } from '../components/error/error.component';
@@ -9,27 +9,33 @@ import { createError } from '@angular/core/src/render3/instructions';
 @Directive({
   selector: '[appRequestLoader]'
 })
-export class RequestLoaderDirective {
-
+export class RequestLoaderDirective implements OnDestroy {
+  requestSub: Subscription;
   @Input() set appRequestLoader(request: Observable<any>) {
     this.createLoadingComponent();
-    request.subscribe(
+    this.requestSub = request.subscribe(
       res => {
       this.viewContainerRef.clear();
-      this.viewContainerRef.createEmbeddedView(this.templateRef, { appRequestLoader: res })
+      this.viewContainerRef.createEmbeddedView(this.templateRef, { appRequestLoader: res });
     },
     error => {
-      console.log("in error handler");
-      this.createErrorComponent(error); 
+      console.log('in error handler');
+      this.createErrorComponent(error);
     });
   }
-  
+
   constructor(
     private templateRef: TemplateRef<any>,
     private viewContainerRef: ViewContainerRef,
     private componentFactoryResolver: ComponentFactoryResolver
-  ) { }
+  ) {
 
+  }
+
+  ngOnDestroy() {
+    console.log('in destory');
+    this.requestSub.unsubscribe();
+  }
 
   // we probably could combine the following two functions into one and pass the component Type and its inputs if needed
   // this would allow more control and maybe later allow custom error handling component by an input prop
